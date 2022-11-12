@@ -18,9 +18,11 @@ import (
 type Publi struct {
 	Title       string `json:"title"`
 	Description string `json:"description"`
+	Direction   string `json:"direction"`
 	City        string `json:"city"`
-	State       string `json:"state"`
+	Province    string `json:"province"`
 	Image       string `json:"image"`
+	Image2      string `json:"image2"`
 	Seller      string `json:"seller"`
 }
 type SolrClient struct {
@@ -76,11 +78,11 @@ func (sc *SolrClient) Update() error {
 	json.Unmarshal(json_bytes, &info)
 
 	//Post en Solr
-	collection := "publicaciones"
+	collection := "avisos"
 	//baseURL := "http://localhost:8983"
 	//client := solr.NewJSONClient(baseURL)
 	docs := []solr.M{
-		{"id": msg, "title": info.Title, "description": info.Description, "city": info.City, "state": info.State, "image": info.Image},
+		{"id": msg, "title": info.Title, "description": info.Description, "direction": info.Direction, "city": info.City, "province": info.Province, "image": info.Image, "image2": info.Image2, "seller": info.Seller},
 	}
 	buf := &bytes.Buffer{}
 	error := json.NewEncoder(buf).Encode(docs)
