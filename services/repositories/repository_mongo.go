@@ -51,7 +51,7 @@ func NewMongoDB(host string, port int, collection string) *RepositoryMongoDB {
 
 	return &RepositoryMongoDB{
 		Client:     client,
-		Database:   client.Database("publicaciones"),
+		Database:   client.Database("avisos"),
 		Collection: collection,
 	}
 }
@@ -75,9 +75,11 @@ func (repo *RepositoryMongoDB) Get(id string) (dtos.ItemDTO, e.ApiError) {
 		Id:          id,
 		Titulo:      item.Titulo,
 		Descripcion: item.Descripcion,
+		Direccion:	 item.Direccion,
 		Ciudad:      item.Ciudad,
-		Estado:      item.Estado,
+		Provincia:   item.Provincia,
 		Imagen:      item.Imagen,
+		Imagen2:     item.Imagen2,
 		Vendedor:    item.Vendedor,
 	}, nil
 }
@@ -86,9 +88,11 @@ func (repo *RepositoryMongoDB) Insert(item dtos.ItemDTO) (dtos.ItemDTO, e.ApiErr
 	result, err := repo.Database.Collection(repo.Collection).InsertOne(context.TODO(), model.Item{
 		Titulo:      item.Titulo,
 		Descripcion: item.Descripcion,
+		Direccion:	 item.Direccion,
 		Ciudad:      item.Ciudad,
-		Estado:      item.Estado,
+		Provincia:   item.Provincia,
 		Imagen:      item.Imagen,
+		Imagen2:     item.Imagen2,
 		Vendedor:    item.Vendedor,
 	})
 	item.Id = fmt.Sprintf(result.InsertedID.(primitive.ObjectID).Hex())
@@ -116,4 +120,29 @@ func (repo *RepositoryMongoDB) Insert(item dtos.ItemDTO) (dtos.ItemDTO, e.ApiErr
 	}
 
 	return item, nil
+}
+
+func (repo *RepositoryMongoDB) Update(item dtos.ItemDTO) (dtos.ItemDTO, e.ApiError) {
+	_, err := repo.Database.Collection(repo.Collection).UpdateByID(context.TODO(), fmt.Sprintf("%v", item.Id), model.Item{
+		Titulo:      item.Titulo,
+		Descripcion: item.Descripcion,
+		Direccion:	 item.Direccion,
+		Ciudad:      item.Ciudad,
+		Provincia:   item.Provincia,
+		Imagen:      item.Imagen,
+		Imagen2:     item.Imagen2,
+		Vendedor:    item.Vendedor,
+	})
+	if err != nil {
+		return dtos.ItemDTO{}, e.NewInternalServerApiError(fmt.Sprintf("error inserting item %s", item.Id), err)
+	}
+	return item, nil
+}
+
+func (repo *RepositoryMongoDB) Delete(id string) e.ApiError {
+	_, err := repo.Database.Collection(repo.Collection).DeleteOne(context.TODO(), bson.M{"_id": fmt.Sprintf("%s", id)})
+	if err != nil {
+		return e.NewInternalServerApiError(fmt.Sprintf("error deleting item %s", id), err)
+	}
+	return nil
 }

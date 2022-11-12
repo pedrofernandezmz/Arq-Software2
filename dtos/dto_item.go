@@ -4,9 +4,10 @@ type ItemDTO struct {
 	Titulo      string `json:"title"`
 	Id          string `json:"id"`
 	Descripcion string `json:"description"`
+	Direccion   string `json:"direction"`
 	Ciudad      string `json:"city"`
-	Estado      string `json:"state"`
+	Provincia   string `json:"province"`
 	Imagen      string `json:"image"`
+	Imagen2     string `json:"image2"`
 	Vendedor    string `json:"seller"`
-	//Precio int `json:"price"`
 }

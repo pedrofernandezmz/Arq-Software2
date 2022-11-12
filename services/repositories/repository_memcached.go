@@ -4,9 +4,9 @@ import (
 	"fmt"
 
 	"github.com/bradfitz/gomemcache/memcache"
-	json "github.com/json-iterator/go"
 	"github.com/pedrofernandezmz/Arq-Software2/dtos"
 	e "github.com/pedrofernandezmz/Arq-Software2/utils/errors"
+	json "github.com/json-iterator/go"
 )
 
 type RepositoryMemcached struct {
@@ -44,7 +44,7 @@ func (repo *RepositoryMemcached) Insert(item dtos.ItemDTO) (dtos.ItemDTO, e.ApiE
 		return dtos.ItemDTO{}, e.NewBadRequestApiError(err.Error())
 	}
 
-	if err := repo.Client.Set(&memcache.Item{ //a chequear, buscar donde esta declarado para cambiar
+	if err := repo.Client.Set(&memcache.Item{ //?????
 		Key:   item.Id,
 		Value: bytes,
 	}); err != nil {
@@ -52,4 +52,28 @@ func (repo *RepositoryMemcached) Insert(item dtos.ItemDTO) (dtos.ItemDTO, e.ApiE
 	}
 
 	return item, nil
+}
+
+func (repo *RepositoryMemcached) Update(item dtos.ItemDTO) (dtos.ItemDTO, e.ApiError) {
+	bytes, err := json.Marshal(item)
+	if err != nil {
+		return dtos.ItemDTO{}, e.NewBadRequestApiError(fmt.Sprintf("invalid item %s: %v", item.Id, err))
+	}
+
+	if err := repo.Client.Set(&memcache.Item{ //?????
+		Key:   item.Id,
+		Value: bytes,
+	}); err != nil {
+		return dtos.ItemDTO{}, e.NewInternalServerApiError(fmt.Sprintf("error updating item %s", item.Id), err)
+	}
+
+	return item, nil
+}
+
+func (repo *RepositoryMemcached) Delete(id string) e.ApiError {
+	err := repo.Client.Delete(id)
+	if err != nil {
+		return e.NewInternalServerApiError(fmt.Sprintf("error deleting item %s", id), err)
+	}
+	return nil
 }
