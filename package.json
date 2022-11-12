@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "solr-node": "^1.2.1"
+  }
+}
