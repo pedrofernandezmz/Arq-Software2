@@ -35,3 +35,42 @@ En el browser: http://localhost:8080
 ################# BACKEND #################
 
 go run main.go
+
+
+################# POBLAR APP #################
+
+[
+{"title":"Casa Pileta Exclusiva - 5 Huespedes - Costa Azul - Carlos Paz","description":"Casa con Piscina en Barrio Costa Azul.","direction":"Lules 140","city":"Villa Carlos Paz","province":"Cordoba","image":"https://http2.mlstatic.com/D_NQ_NP_2X_635417-MLA52304630991_112022-F.webp","image2":"https://http2.mlstatic.com/D_NQ_NP_2X_924225-MLA52304649194_112022-F.webp","seller":"Pedro"}
+,
+{"title":"Nueva Cordoba Exclusivo Departamento 125m2 Propios Con La Mejor Vista!","description":"Ademas de la excelente ubicacion, tenemos un producto de categoria.","direction":"Bv.san Juan Al 222","city":"Cordoba","province":"Cordoba","image":"https://http2.mlstatic.com/D_NQ_NP_2X_986906-MLA50426887233_062022-F.webp","image2":"https://http2.mlstatic.com/D_NQ_NP_2X_904096-MLA50426887235_062022-F.webp","seller":"Gustavo"}
+,
+{"title":"Departamento En Venta 2 Ambientes Maral Explanada Playa Chic","description":"Departamento en el exclusivo edificio Maral Explanada, ubicado en Playa Chica","direction":"Aristobulo Del Valle Al 2700","city":"Mar del Plata","province":"Buenos Aires","image":"https://http2.mlstatic.com/D_NQ_NP_2X_920355-MLA52305776621_112022-F.webp","image2":"https://http2.mlstatic.com/D_NQ_NP_2X_731306-MLA52305776617_112022-F.webp","seller":"Felipe"}
+,
+{"title":"2 Ambientes Con Balcon Terraza - Parrilla - Nueva Cordoba - Oportunidad","description":"Departamento 2 ambientes, sobre calle Rondeau al 500 entre Balcarce y Parana","direction":"Rondeau Al 500","city":"Cordoba","province":"Cordoba","image":"https://http2.mlstatic.com/D_NQ_NP_2X_606661-MLA49972149586_052022-F.webp","image2":"https://http2.mlstatic.com/D_NQ_NP_2X_860981-MLA49972149591_052022-F.webp","seller":"Pedro"}
+,
+{"title":"Casa - El Cazal- Nautico","description":"Casa de estilo racional, Invertida de arquitectura moderna y volumenes puros","direction":"Club Nautico El Cazal","city":"Escobar","province":"Buenos Aires","image":"https://http2.mlstatic.com/D_NQ_NP_2X_923043-MLA52317649783_112022-F.webp","image2":"https://http2.mlstatic.com/D_NQ_NP_2X_967427-MLA52317649781_112022-F.webp","seller":"Gustavo"}
+,
+{"title":"Casa En Venta En Los Cardales 3 Dormitorios","description":"Ambientes amplios, luninosos y funcionales. Creando espacios comodos, calidos","direction":"Av. Libertador San Marton","city":"Los Cardales","province":"Buenos Aires","image":"https://http2.mlstatic.com/D_NQ_NP_2X_952380-MLA52351949849_112022-F.webp","image2":"https://http2.mlstatic.com/D_NQ_NP_2X_775371-MLA52351949833_112022-F.webp","seller":"Felipe"}
+,
+{"title":"Casa En Venta Con Local En Don Torcuato","description":"Excelente oportunidad para ver! Coordina tu visita con anticipacion!","direction":"Buschiazo 581","city":"Villa Allende","province":"Cordoba","image":"https://http2.mlstatic.com/D_NQ_NP_2X_852886-MLA52319425185_112022-F.webp","image2":"https://http2.mlstatic.com/D_NQ_NP_2X_727992-MLA52319425192_112022-F.webp","seller":"Pedro"}
+,
+{"title":"Casa 4 Ambientes En Venta El Centauro Canning","description":"La propiedad cuenta con cuatro ambientes, galeria y cochera semi cubierta","direction":"El Centauro","city":"Cordoba","province":"Cordoba","image":"https://http2.mlstatic.com/D_NQ_NP_2X_822846-MLA52351130819_112022-F.webp","image2":"https://http2.mlstatic.com/D_NQ_NP_2X_863754-MLA52351130815_112022-F.webp","seller":"Gustavo"}
+,
+{"title":"NORDELTA | TODAS NUESTRAS PROPIEDADES!","description":"Nordelta tiene una oferta sumamente variada de barrios y tipos de vivienda","direction":"Barrios Cerrados De Nordelta","city":"Tigre","province":"Buenos Aires","image":"https://http2.mlstatic.com/D_NQ_NP_2X_835041-MLA52316344977_112022-F.webp","image2":"https://http2.mlstatic.com/D_NQ_NP_2X_611711-MLA52316347128_112022-F.webp","seller":"Felipe"}
+,
+{"title":"Departamento - Balvanera","description":"En excelente ubicacion Boulogne Sur Mer, entre Avda. Corrientes y Avda.","direction":"Boulogne Sur Mer Al 500","city":"Capital Federal","province":"Buenos Aires","image":"https://http2.mlstatic.com/D_NQ_NP_2X_744586-MLA52315774971_112022-F.webp","image2":"https://http2.mlstatic.com/D_NQ_NP_2X_841870-MLA52315774965_112022-F.webp","seller":"Pedro"}
+,
+{"title":"Venta Departamento Premium Nueva Cordoba Un Dormitorio","description":"VENTA Departamento de 1 Dormitorio, sobre Av. Pueyrredon 238, en pleno barrio","direction":"Nueva Cordoba","city":"Cordoba","province":"Cordoba","image":"https://http2.mlstatic.com/D_NQ_NP_2X_628662-MLA52296556887_112022-F.webp","image2":"https://http2.mlstatic.com/D_NQ_NP_2X_878185-MLA50408056997_062022-F.webp","seller":"Gustavo"}
+,
+{"title":"Amplio Monoambiente Con Balcon Al Fte Apto Profesional - Caballito","description":"Cocina semi-integrada con barra desayunadora","direction":"Formosa 630 2a","city":"Capital Federal","province":"Buenos Aires","image":"https://http2.mlstatic.com/D_NQ_NP_2X_955907-MLA52351343779_112022-F.webp","image2":"https://http2.mlstatic.com/D_NQ_NP_2X_824112-MLA52351343782_112022-F.webp","seller":"Felipe"}
+,
+{"title":"Juan Del Campillo Al 900 - Con Escritura!","description":"Living Comedor con cocina integrada con alacenas, espacio para lavarropas","direction":"Juan Del Campillo 987","city":"Cordoba","province":"Cordoba","image":"https://http2.mlstatic.com/D_NQ_NP_2X_857567-MLA52350898757_112022-F.webp","image2":"https://http2.mlstatic.com/D_NQ_NP_2X_850976-MLA52350929596_112022-F.webp","seller":"Pedro"}
+,
+{"title":"Terraza Propia - Asador - Desocupado - Buenos Aires!!!","description":"CONEXAR INMUEBLES OFRECE DEPTO CON TERRAZA EXCLUSIVA DE 3X8 MTS","direction":"Buenos Aires Al 400","city":"Cordoba","province":"Cordoba","image":"https://http2.mlstatic.com/D_NQ_NP_2X_778638-MLA52336952320_112022-F.webp","image2":"https://http2.mlstatic.com/D_NQ_NP_2X_753445-MLA52336952318_112022-F.webp","seller":"Gustavo"}
+,
+{"title":"Casa - Venta - 5 Ambientes - Fondo Libre - Jardin - Terraza - El Palomar - Zona Oeste","description":"Hermosa casa de 6 ambientes, compuesto de living amplio, cocina completa","direction":"Jose E Rodo Al 200","city":"Moron","province":"Buenos Aires","image":"https://http2.mlstatic.com/D_NQ_NP_2X_948746-MLA52367113067_112022-F.webp","image2":"https://http2.mlstatic.com/D_NQ_NP_2X_923957-MLA52297794590_112022-F.webp","seller":"Felipe"}
+,
+{"title":"Casa De Categoria, Arq Con 4 Dormitorios Y Pileta - Haras Santa Maria - Escobar","description":"Casa a estrenar construida por estudio de arquitectura, excelente","direction":"Haras Santa Maria","city":"Escobar","province":"Buenos Aires","image":"https://http2.mlstatic.com/D_NQ_NP_2X_620293-MLA52297663415_112022-F.webp","image2":"https://http2.mlstatic.com/D_NQ_NP_2X_756340-MLA52297663424_112022-F.webp","seller":"Pedro"}
+,
+{"title":"Venta Casa Barrio San Matias... Unica En Su Construccion , En La Mejor Aerea !","description":"HERMOSA CASA de Dos Plantas en Aerea 2 ..La mejor zona x la Arboleda !!!","direction":"Bernardo De Yrigoyen 1390","city":"Escobar","province":"Buenos Aires","image":"https://http2.mlstatic.com/D_NQ_NP_2X_806238-MLA52319573665_112022-F.webp","image2":"https://http2.mlstatic.com/D_NQ_NP_2X_729179-MLA52319573674_112022-F.webp","seller":"Gustavo"}
+]
