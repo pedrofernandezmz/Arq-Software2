@@ -7,10 +7,10 @@ import (
 	"log"
 	"time"
 
-	"github.com/aaraya0/arq-software/arq-sw-2/dtos"
-	model "github.com/aaraya0/arq-software/arq-sw-2/models"
+	"github.com/pedrofernandezmz/Arq-Software2/dtos"
+	model "github.com/pedrofernandezmz/Arq-Software2/models"
 
-	e "github.com/aaraya0/arq-software/arq-sw-2/utils/errors"
+	e "github.com/pedrofernandezmz/Arq-Software2/utils/errors"
 	amqp "github.com/rabbitmq/amqp091-go"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"

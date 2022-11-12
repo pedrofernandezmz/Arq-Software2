@@ -1,9 +1,9 @@
 package app
 
 import (
-	"github.com/aaraya0/arq-software/arq-sw-2/controllers"
-	service "github.com/aaraya0/arq-software/arq-sw-2/services"
-	"github.com/aaraya0/arq-software/arq-sw-2/services/repositories"
+	"github.com/pedrofernandezmz/Arq-Software2/controllers"
+	service "github.com/pedrofernandezmz/Arq-Software2/services"
+	"github.com/pedrofernandezmz/Arq-Software2/services/repositories"
 )
 
 type Dependencies struct {

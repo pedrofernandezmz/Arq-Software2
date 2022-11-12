@@ -1,4 +1,4 @@
-module github.com/aaraya0/arq-software/arq-sw-2
+module github.com/pedrofernandezmz/Arq-Software2
 
 go 1.18
 

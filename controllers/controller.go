@@ -3,10 +3,10 @@ package controllers
 import (
 	"net/http"
 
-	"github.com/aaraya0/arq-software/arq-sw-2/dtos"
-	service "github.com/aaraya0/arq-software/arq-sw-2/services"
-	e "github.com/aaraya0/arq-software/arq-sw-2/utils/errors"
 	"github.com/gin-gonic/gin"
+	"github.com/pedrofernandezmz/Arq-Software2/dtos"
+	service "github.com/pedrofernandezmz/Arq-Software2/services"
+	e "github.com/pedrofernandezmz/Arq-Software2/utils/errors"
 )
 
 type Controller struct {

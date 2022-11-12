@@ -3,10 +3,10 @@ package repositories
 import (
 	"fmt"
 
-	"github.com/aaraya0/arq-software/arq-sw-2/dtos"
-	e "github.com/aaraya0/arq-software/arq-sw-2/utils/errors"
 	"github.com/bradfitz/gomemcache/memcache"
 	json "github.com/json-iterator/go"
+	"github.com/pedrofernandezmz/Arq-Software2/dtos"
+	e "github.com/pedrofernandezmz/Arq-Software2/utils/errors"
 )
 
 type RepositoryMemcached struct {

@@ -1,8 +1,8 @@
 package repositories
 
 import (
-	"github.com/aaraya0/arq-software/arq-sw-2/dtos"
-	"github.com/aaraya0/arq-software/arq-sw-2/utils/errors"
+	"github.com/pedrofernandezmz/Arq-Software2/dtos"
+	"github.com/pedrofernandezmz/Arq-Software2/utils/errors"
 )
 
 type Repository interface {
