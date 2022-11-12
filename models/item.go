@@ -1,12 +1,12 @@
 package model
 
 type Item struct {
-	Titulo      string `bson:"text"`
-	Descripcion string `bson:"text"`
-	Direccion   string `bson:"text"`
-	Ciudad      string `bson:"text"`
-	Provincia   string `bson:"text"`
-	Imagen      string `bson:"text"`
-	Imagen2     string `bson:"text"`
-	Vendedor    string `bson:"text"`
+	Titulo      string `bson:"title"`
+	Descripcion string `bson:"description"`
+	Direccion   string `bson:"direction"`
+	Ciudad      string `bson:"city"`
+	Provincia   string `bson:"province"`
+	Imagen      string `bson:"image"`
+	Imagen2     string `bson:"image2"`
+	Vendedor    string `bson:"seller"`
 }
