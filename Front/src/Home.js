@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./Home.css";
 import "./css/materialize.css"
 import logo from "./images/home.svg"
-import cart from "./images/cart.svg"
 import Cookies from "universal-cookie";
 
 const Cookie = new Cookies();
@@ -27,7 +26,7 @@ async function getCategories(){
 }
 
 async function getProducts(){
-  return await fetch('http://127.0.0.1:8080/products', {
+  return await fetch("http://localhost:8983/solr/avisos/query?q=*:*&q.op=OR&indent=true&rows=100", {
     method: "GET",
     headers: {
       "Content-Type": "application/json"
@@ -36,7 +35,8 @@ async function getProducts(){
 }
 
 async function getProductsByCategoryId(id){
-  return await fetch('http://127.0.0.1:8080/products/' + id, {
+  //solo para probar corregir
+  return await fetch("http://localhost:8983/solr/avisos/select?&defType=lucene&indent=true&q=description:%22%27"+id+"%27%22%0Atitle:%22%27"+id+"%27%22&q.op=OR&rows=100", {
     method: "GET",
     headers: {
       "Content-Type": "application/json"
@@ -97,18 +97,18 @@ function addToCart(id, setCartItems){
 function showProducts(products, setCartItems){
   return products.map((product) =>
     <div class="col s2">
-      <div class="product large" key={product.product_id} className="product">
+      <div class="product large" key={product.id} className="product">
         <div class="product-image">
-        <img width="128px" height="300px" src={product.picture_url}  onError={(e) => (e.target.onerror = null, e.target.src = "./images/default.jpg")}/>
+        <img width="128px" height="300px" src={product.image}  onError={(e) => (e.target.onerror = null, e.target.src = "./images/default.jpg")}/>
         </div>
         <div class="product-content">
-          <span class="text-blue"><a className="name">{product.name}</a></span>
-          <p>Cantidad disponible: {product.stock}</p>
-          <p>Precio: ${product.base_price}</p>
+          <span class="text-blue"><a className="name">{product.title}</a></span>
+          <p>Ciudad: {product.city}</p>
+          <p>Direccion: {product.direction}</p>
         </div>
-        <div class="product-action">
+        {/* <div class="product-action">
           <a class="waves-effect waves-light btn yellow black-text" onClick={() => addToCart(product.product_id, setCartItems)}>Agregar al carrito</a>
-        </div>
+        </div> */}
       </div>
     </div>
  )
@@ -154,7 +154,7 @@ function gotocompras(){
 }
 
 async function getProductBySearch(query){
-  return fetch("http://localhost:8080/products/search="+query, {
+  return fetch("http://localhost:8983/solr/avisos/select?&defType=lucene&indent=true&q=description:%22%27"+query+"%27%22%0Atitle:%22%27"+query+"%27%22&q.op=OR&rows=100", {
     method: "GET",
     header: "Content-Type: application/json"
   }).then(response=>response.json())
@@ -179,7 +179,7 @@ function Home() {
   }
 
   if (products.length <= 0){
-    getProducts().then(response => {setProducts(response)})
+    getProducts().then(response => {setProducts(response.response.docs)})
   }
 
   if (!cartItems && Cookie.get("cartItems")){
@@ -190,9 +190,9 @@ function Home() {
 
     await getProductBySearch(query).then(response=>{
       console.log(query)
-      if(response != null){
-        if(response.length > 0){
-          setProducts(response)
+      if(response.response.docs != null){
+        if(response.response.docs.length > 0){
+          setProducts(response.response.docs)
           setFailedSearch(false)
         }else{
           setProducts([])
@@ -211,10 +211,10 @@ function Home() {
   async function categories(id){
 
     await getProductsByCategoryId(id).then(response=>{
-      console.log(id)
-      if(response != null){
-        if(response.length > 0){
-          setProducts(response)
+      console.log(response.response.docs)
+      if(response.response.docs != null){
+        if(response.response.docs.length > 0){
+          setProducts(response.response.docs)
           setFailedSearch(false)
         }else{
           setProducts([])
@@ -223,7 +223,7 @@ function Home() {
       }
       else{
         setFailedSearch(false)
-        getProducts().then(response=>setProducts(response))
+        getProducts().then(response=>setProducts(response.response.docs))
       }
     })
 
@@ -265,11 +265,11 @@ function Home() {
       <button class="botoncats" onClick={() => categories(0)}>
             TODO
           </button>
-      <button class="botoncats" onClick={() => categories(1)}>
-            AUTOS
+      <button class="botoncats" onClick={() => categories("casa")}>
+            CASAS
           </button>
-          <button class="botoncats" onClick={() => categories(2)}>
-            CELULARES
+          <button class="botoncats" onClick={() => categories("departamento")}>
+            DEPARTAMENTOS
           </button>
           <button class="botoncats" onClick={() => categories(3)}>
             FERRETERIA
