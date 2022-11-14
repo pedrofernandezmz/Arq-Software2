@@ -18,3 +18,41 @@ Requerimientos no funcionales:
 2) Utilizar github o similar para versionar el código fuente
 3) Escribir la documentación en el readme del repositorio
 Ej de la estructura de un item: https://api.mercadolibre.com/items/MLA1146082202
+
+---- EJECUCION DE CONTENEDORES DOCKER ----
+
+################ MONGODB ###############
+
+docker run -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=root --name some-mongo -d mongo:5.0
+docker ps
+docker exec -ti [CONTAINER] bash         ---> docker exec -ti some-mongo bash
+mongosh --username root --password root --authenticationDatabase admin
+show dbs
+use lalala
+db.book.insert({name: "Ada Lovelace", isbn: 12333})
+show dbs
+
+################ MEMCACHED ###############
+
+Golang github.com/bradfitz/gomemcache
+docker run --name memcached -p 11211:11211 memcached:1.6.16
+
+############### CACHELOCAL ###############
+
+Golang github.com/karlseguin/ccache/v2
+
+################# SOLR #################
+
+docker run -d -p 8983:8983 --name my_solr solr
+docker exec -it my_solr solr create_core -c avisos
+http://localhost:8983/solr/#/
+curl -X GET "http://localhost:8983/solr/books/query?q=id:080508049X"
+
+################# RABBITMQ #################
+
+docker run -d --hostname my-rabbit -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password --name some-rabbit -p 5671:5671 -p 5672:5672 -p 8080:15672 rabbitmq:3-management
+En el browser: http://localhost:8080
+
+################# BACKEND #################
+
+go run main.go
