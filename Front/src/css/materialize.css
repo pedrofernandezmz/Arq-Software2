@@ -3501,10 +3501,14 @@ table span.badge {
 }
 
 .row .col.s2 {
-  width: 16.6666666667%;
+  width: 20%;
   margin-left: auto;
   left: auto;
   right: auto;
+}
+
+.row .col.s2:hover {
+  transform: scale(1.05); 
 }
 
 .row .col.s3 {

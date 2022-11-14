@@ -271,7 +271,7 @@ function Home() {
           <button class="botoncats" onClick={() => categories("departamento")}>
             DEPARTAMENTOS
           </button>
-          <button class="botoncats" onClick={() => categories(3)}>
+          {/* <button class="botoncats" onClick={() => categories(3)}>
             FERRETERIA
           </button>
           <button class="botoncats" onClick={() => categories(4)}>
@@ -288,7 +288,7 @@ function Home() {
           </button>
           <button class="botoncats" onClick={() => categories(8)}>
             COMPUTACION
-          </button>
+          </button> */}
           </div>
       <div class="row" id="main">
         {products.length > 0 || failedSearch ? showProducts(products, setCartItems) : <a>NO HAY PRODUCTOS </a>}

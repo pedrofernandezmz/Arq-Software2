@@ -1,19 +1,19 @@
-
 package services
 
 import (
 	"fmt"
+	"net/http"
+
 	"github.com/pedrofernandezmz/Arq-Software2/dtos"
 	"github.com/pedrofernandezmz/Arq-Software2/services/repositories"
 	e "github.com/pedrofernandezmz/Arq-Software2/utils/errors"
-	"net/http"
 )
 
 type ServiceImpl struct {
 	localCache repositories.Repository
 	distCache  repositories.Repository
 	db         repositories.Repository
-	solr      *repositories.SolrClient
+	solr       *repositories.SolrClient
 }
 
 func NewServiceImpl(
@@ -24,9 +24,9 @@ func NewServiceImpl(
 ) *ServiceImpl {
 	return &ServiceImpl{
 		localCache: localCache,
-		distCache: distCache,
-		db:        db,
-		solr:      solr,
+		distCache:  distCache,
+		db:         db,
+		solr:       solr,
 	}
 }
 
@@ -53,18 +53,18 @@ func (serv *ServiceImpl) Get(id string) (dtos.ItemDTO, e.ApiError) {
 				if apiErr.Status() != http.StatusNotFound {
 					return dtos.ItemDTO{}, apiErr
 				} else {
-					fmt.Println(fmt.Sprintf("Not found book %s in any datasource", id))
-					apiErr = e.NewNotFoundApiError(fmt.Sprintf("book %s not found", id))
+					fmt.Println(fmt.Sprintf("Not found item %s in any datasource", id))
+					apiErr = e.NewNotFoundApiError(fmt.Sprintf("item %s not found", id))
 					return dtos.ItemDTO{}, apiErr
 				}
 			} else {
 				source = "db"
 				defer func() {
 					if _, apiErr := serv.distCache.Insert(item); apiErr != nil {
-						fmt.Println(fmt.Sprintf("Error trying to save book in distCache %v", apiErr))
+						fmt.Println(fmt.Sprintf("Error trying to save item in distCache %v", apiErr))
 					}
 					if _, apiErr := serv.localCache.Insert(item); apiErr != nil {
-						fmt.Println(fmt.Sprintf("Error trying to save book in localCache %v", apiErr))
+						fmt.Println(fmt.Sprintf("Error trying to save item in localCache %v", apiErr))
 					}
 				}()
 			}
@@ -72,7 +72,7 @@ func (serv *ServiceImpl) Get(id string) (dtos.ItemDTO, e.ApiError) {
 			source = "distCache"
 			defer func() {
 				if _, apiErr := serv.localCache.Insert(item); apiErr != nil {
-					fmt.Println(fmt.Sprintf("Error trying to save book in localCache %v", apiErr))
+					fmt.Println(fmt.Sprintf("Error trying to save item in localCache %v", apiErr))
 				}
 			}()
 		}
@@ -80,31 +80,31 @@ func (serv *ServiceImpl) Get(id string) (dtos.ItemDTO, e.ApiError) {
 		source = "localCache"
 	}
 
-	fmt.Println(fmt.Sprintf("Obtained book from %s!", source))
+	fmt.Println(fmt.Sprintf("Obtained item from %s!", source))
 	return item, nil
 }
 
 func (serv *ServiceImpl) Insert(item dtos.ItemDTO) (dtos.ItemDTO, e.ApiError) {
 	result, apiErr := serv.db.Insert(item)
 	if apiErr != nil {
-		fmt.Println(fmt.Sprintf("Error inserting book in db: %v", apiErr))
+		fmt.Println(fmt.Sprintf("Error inserting item in db: %v", apiErr))
 		return dtos.ItemDTO{}, apiErr
 	}
-	fmt.Println(fmt.Sprintf("Inserted book in db: %v", result))
+	fmt.Println(fmt.Sprintf("Inserted item in db: %v", result))
 
 	_, apiErr = serv.distCache.Insert(result)
 	if apiErr != nil {
-		fmt.Println(fmt.Sprintf("Error inserting book in distCache: %v", apiErr))
+		fmt.Println(fmt.Sprintf("Error inserting item in distCache: %v", apiErr))
 		return result, nil
 	}
-	fmt.Println(fmt.Sprintf("Inserted book in distCache: %v", result))
+	fmt.Println(fmt.Sprintf("Inserted item in distCache: %v", result))
 
 	_, apiErr = serv.localCache.Insert(result)
 	if apiErr != nil {
-		fmt.Println(fmt.Sprintf("Error inserting book in localCache: %v", apiErr))
+		fmt.Println(fmt.Sprintf("Error inserting item in localCache: %v", apiErr))
 		return result, nil
 	}
-	fmt.Println(fmt.Sprintf("Inserted book in localCache: %v", result))
+	fmt.Println(fmt.Sprintf("Inserted item in localCache: %v", result))
 
 	apiErr2 := serv.solr.Update()
 	if apiErr2 != nil {

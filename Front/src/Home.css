@@ -3,6 +3,10 @@
   font-family: "Poppins", sans-serif;
  }
 
+ .col_s2{
+  width: 20%;
+ }
+
  .height{
   height: 100vh;
  }
@@ -219,7 +223,7 @@
 .categories {
   text-align: center;
   background-color: rgb(51, 51, 51);
-  padding-left: 300px;
+  padding-left: 0px;
 }
 
 .botoncats {
@@ -256,7 +260,7 @@
   text-align: center;
 }
 
-form{
+/* form{
   position: relative;
   top: 50%;
   left: 50%;
@@ -334,4 +338,4 @@ form:valid .fa{
 
 form:valid a {
   display: block;
-}
+} */

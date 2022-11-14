@@ -2,10 +2,11 @@ package repositories
 
 import (
 	"fmt"
+	"time"
+
+	"github.com/karlseguin/ccache/v2"
 	"github.com/pedrofernandezmz/Arq-Software2/dtos"
 	e "github.com/pedrofernandezmz/Arq-Software2/utils/errors"
-	"github.com/karlseguin/ccache/v2"
-	"time"
 )
 
 type RepositoryCCache struct {
@@ -38,9 +39,9 @@ func (repo *RepositoryCCache) Insert(item dtos.ItemDTO) (dtos.ItemDTO, e.ApiErro
 	return item, nil
 }
 
-func (repo *RepositoryCCache) Update(book dtos.ItemDTO) (dtos.ItemDTO, e.ApiError) {
-	repo.Client.Set(book.Id, book, repo.DefaultTTL)
-	return book, nil
+func (repo *RepositoryCCache) Update(item dtos.ItemDTO) (dtos.ItemDTO, e.ApiError) {
+	repo.Client.Set(item.Id, item, repo.DefaultTTL)
+	return item, nil
 }
 
 func (repo *RepositoryCCache) Delete(id string) e.ApiError {
